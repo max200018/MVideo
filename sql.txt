@@ -1,0 +1,10 @@
+1. SELECT * AS e FROM employee WHERE salary>(SELECT salary FROM employee WHERE id=e.chief_id)
+
+2. SELECT name FROM employee e JOIN (SELECT department_id, MAX(salary) AS max_salary FROM employee e2 GROUP BY department_id) d
+ON d.department_id=e.department_id AND e.salary = d.max_salary
+
+3. SELECT id, department_id AS dep FROM employee WHERE (SELECT COUNT(*) FROM employee WHERE department_id=dep)<=3
+
+4. SELECT * AS e FROM employee JOIN employee AS e2 ON e.chief_id=e2.id AND e2.department_id<>e.department_id
+
+5. SELECT department_id, SUM(salary) FROM employee GROUP BY department_id
